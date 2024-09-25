@@ -21,5 +21,5 @@ This project demonstrates how to control an LED using Python and an Arduino boar
 
 1. Create a virtual environment:
    ```bash
-   python -m venv myenv```
+   python -m venv myenv
 
