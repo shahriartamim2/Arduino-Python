@@ -27,6 +27,7 @@ This project demonstrates how to control an LED using Python and an Arduino boar
    ```bash
    myenv\Scripts\activate
 
+
 3. Install pyfirmata2:
    ```bash
    pip install pyfirmata2
