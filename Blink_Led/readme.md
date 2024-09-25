@@ -22,16 +22,17 @@ This project demonstrates how to control an LED using Python and an Arduino boar
 1. Create a virtual environment:
    ```bash
    python -m venv myenv
+```
 
 2.  Activate the environment:
    ```bash
    myenv\Scripts\activate
-
+```
 
 3. Install pyfirmata2:
    ```bash
    pip install pyfirmata2
-
+```
 
 ### Step 2: Upload Firmata to Arduino
  1.Open Arduino IDE.
@@ -42,6 +43,6 @@ This project demonstrates how to control an LED using Python and an Arduino boar
 Run the script to control the LED:
    ```bash
    python src/blinkLed.py
-
+```
 
 
