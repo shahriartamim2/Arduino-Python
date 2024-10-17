@@ -26,6 +26,7 @@ detected_color_label.pack(pady=10)
 match_status_label = Label(root, text="Match Status: Not Checked", font=("Arial", 14))
 match_status_label.pack(pady=10)
 
+
 # Function to update the detected color label and match status
 def update_gui():
     global detectedColor

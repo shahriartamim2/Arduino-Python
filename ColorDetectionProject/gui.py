@@ -1,5 +1,9 @@
 import tkinter as tk
 import bobbin_color
+import detection
+
+def open_detection_window():
+    detection.create_detection_window()
 
 # Function to update the label and selectedColor variable when a color button is clicked
 def update_label(color):
@@ -14,14 +18,16 @@ def export_color():
         with open("bobbin_color.py", "w") as file:
             file.write(f"selectedColor = '{selectedColor}'\n")
         label.config(text=f"Bobbin Color set to : {selectedColor}")
-        print(f"Selected color '{selectedColor}' has been written to selected_color.py")
+        label.config(text="Opening Detection Window")
+        open_detection_window()
+        
     else:
         print("No color selected to export.")
 
 
 # Create the main window
 root = tk.Tk()
-root.title("Color Selection GUI")
+root.title("Color Selection Window")
 root.geometry("500x350")
 
 # Create a label widget
@@ -42,7 +48,7 @@ for color in colors:
     button.pack(pady=5)
 
 # Create an "Export" button to save the selected color
-export_button = tk.Button(root, text="Export Color", command=export_color)
+export_button = tk.Button(root, text="Save Color ", command=export_color, font=("Arial", 14))
 export_button.pack(pady=20)
 
 # Start the GUI event loop
