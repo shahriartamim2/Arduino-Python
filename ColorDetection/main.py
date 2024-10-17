@@ -14,7 +14,6 @@ detectedColor = ""
 while True:
     if ser.in_waiting > 0:
         data = ser.readline().decode().strip()
-        print(data)
         parts = data.split()
         R = parts[1]
         G = parts[3]

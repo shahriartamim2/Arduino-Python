@@ -1,1 +1,1 @@
-selectedColor = 'Blue'
+selectedColor = 'Black'
