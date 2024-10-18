@@ -49,9 +49,9 @@ def update_gui(second_window, detected_color_label, match_status_label):
             
             # Check if the detected color matches the selected bobbin color
             if detectedColor == bobbinColor:
-                match_status_label.config(text="Match Status: Matched", fg="green")
+                match_status_label.config(text="Match Status: Bobbin Color Matched", fg="green")
             else:
-                match_status_label.config(text="Match Status: Mismatch", fg="red")
+                match_status_label.config(text="Match Status: Bobbin Color does not match", fg="red")
         
     # Schedule the function to run again after a short delay
     second_window.after(500, lambda: update_gui(second_window, detected_color_label, match_status_label))
@@ -61,7 +61,7 @@ def create_detection_window():
     # Create a new window for the detection process
     second_window = tk.Toplevel()
     second_window.title("Color Detection")
-    second_window.geometry("400x300")
+    second_window.geometry("500x350")
 
     # Create Labels to display the detected color and match status
     detected_color_label = Label(second_window, text="Detected Color: None", font=("Arial", 14))
