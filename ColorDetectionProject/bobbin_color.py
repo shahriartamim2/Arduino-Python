@@ -1,1 +1,0 @@
-selectedColor = 'Black'

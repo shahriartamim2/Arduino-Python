@@ -2,10 +2,8 @@ import tkinter as tk
 from tkinter import Label
 import serial
 import time
-import bobbin_color
 
 # Initialize serial communication and variables
-bobbinColor = bobbin_color.selectedColor  # Preselected color from the other module
 detectedColor = ""
 
 PORT = 'COM5'
@@ -15,7 +13,7 @@ time.sleep(3)  # Allow time for the connection to establish
 thres = 200
 
 # Function to update the detected color label and match status
-def update_gui(second_window, detected_color_label, match_status_label):
+def update_gui(second_window, selected_color, selected_color_label, detected_color_label, match_status_label):
     global detectedColor
 
     if ser.in_waiting > 0:
@@ -43,21 +41,22 @@ def update_gui(second_window, detected_color_label, match_status_label):
                 detectedColor = "Blue"
             else:
                 detectedColor = "No dominant color detected"
-
+                
+            selected_color_label.config(text=f"Selected Bobbin Color: {selected_color}")
             # Update the detected color label
-            detected_color_label.config(text=f"Detected Color: {detectedColor}")
+            detected_color_label.config(text=f"Detected Bobbin Color: {detectedColor}")
             
             # Check if the detected color matches the selected bobbin color
-            if detectedColor == bobbinColor:
+            if detectedColor == selected_color:
                 match_status_label.config(text="Match Status: Bobbin Color Matched", fg="green")
             else:
                 match_status_label.config(text="Match Status: Bobbin Color does not match", fg="red")
         
     # Schedule the function to run again after a short delay
-    second_window.after(500, lambda: update_gui(second_window, detected_color_label, match_status_label))
+    second_window.after(500, lambda: update_gui(second_window, selected_color, selected_color_label, detected_color_label, match_status_label))
 
-# Function to create and display the detection window
-def create_detection_window():
+# Function to create and display the detection window, accepting the selected color
+def create_detection_window(selected_color):
     # Create a new window for the detection process
     second_window = tk.Toplevel()
     second_window.title("Color Detection")
@@ -66,9 +65,12 @@ def create_detection_window():
     # Create Labels to display the detected color and match status
     detected_color_label = Label(second_window, text="Detected Color: None", font=("Arial", 14))
     detected_color_label.pack(pady=10)
-
+    
+    selected_color_label = Label(second_window, text="Selected Color: None", font=("Arial", 14))
+    selected_color_label.pack(pady=10) 
+    
     match_status_label = Label(second_window, text="Match Status: Not Checked", font=("Arial", 14))
     match_status_label.pack(pady=10)
 
     # Start the detection process by calling update_gui
-    update_gui(second_window, detected_color_label, match_status_label)
+    update_gui(second_window, selected_color, selected_color_label, detected_color_label, match_status_label)
